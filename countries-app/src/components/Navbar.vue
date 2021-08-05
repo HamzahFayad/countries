@@ -1,7 +1,10 @@
 <template>
   <div id="nav">
     <h1>Where in the World?</h1>
-    <p>Dark Mode</p>
+    <div class="dark-light">
+      <img src="../assets/moon-solid.svg" alt="" />
+      <p>Dark Mode</p>
+    </div>
   </div>
 </template>
 
@@ -9,7 +12,7 @@
 export default {};
 </script>
 
-<style scoped>
+<style>
 #nav {
   padding: 0 60px;
 }
@@ -18,8 +21,18 @@ h1 {
   font-size: 24px;
   line-height: 44px;
 }
-p {
+.dark-light {
   float: right;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+  cursor: pointer;
+}
+.dark-light > img {
+  width: 20px;
+}
+.dark-light > p {
   line-height: 44px;
+  font-weight: 600;
 }
 </style>
