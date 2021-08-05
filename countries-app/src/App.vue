@@ -53,6 +53,7 @@ body {
   position: fixed;
   top: 0;
   background: hsl(209, 23%, 22%);
+  z-index: 11;
 }
 p,
 h1 {

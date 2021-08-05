@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <h1>Where in the World?</h1>
+    <h1>Where in the world?</h1>
     <div class="dark-light">
       <img src="../assets/moon-solid.svg" alt="" />
       <p>Dark Mode</p>
@@ -14,11 +14,11 @@ export default {};
 
 <style>
 #nav {
-  padding: 0 60px;
+  margin: 0 6%;
 }
 h1 {
   float: left;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 44px;
 }
 .dark-light {

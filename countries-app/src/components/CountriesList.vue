@@ -1,15 +1,24 @@
 <template>
-  <div id="countrieslist">
-    <div class="list" v-for="(country, index) in list" :key="index">
-      <div class="imageFlag">
-        <img class="flag" :src="country.flag" alt="" />
+  <div id="allCountries">
+    <div class="search-filter">
+      <input class="search" type="text" placeholder="SearchBar..." />
+      <div class="filtering">
+        <FilterCountries />
       </div>
-      <div class="countryInfos">
-        <h2 class="countryName">{{ country.name }}</h2>
-        <div class="facts">
-          <p>Population: {{ country.population }}</p>
-          <p>Region: {{ country.region }}</p>
-          <p>Capital: {{ country.capital }}</p>
+    </div>
+
+    <div id="countrieslist">
+      <div class="list" v-for="(country, index) in list" :key="index">
+        <div class="imageFlag">
+          <img class="flag" :src="country.flag" alt="" />
+        </div>
+        <div class="countryInfos">
+          <h2 class="countryName">{{ country.name }}</h2>
+          <div class="facts">
+            <p>Population: {{ country.population }}</p>
+            <p>Region: {{ country.region }}</p>
+            <p>Capital: {{ country.capital }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -17,8 +26,12 @@
 </template>
 
 <script>
+import FilterCountries from "./FilterCountries.vue";
 export default {
   name: "CountriesList",
+  components: {
+    FilterCountries,
+  },
   props: {
     list: {
       type: Array,
@@ -26,7 +39,11 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      regionsURL: "https://restcountries.eu/rest/v2/region/europe",
+      regions: [],
+      selected: "",
+    };
   },
 };
 </script>
@@ -40,7 +57,7 @@ export default {
 }
 .list {
   background: hsl(209, 23%, 22%);
-  max-width: 280px;
+  max-width: 260px;
   margin: 2% auto;
   border-radius: 8px;
 }
@@ -56,17 +73,40 @@ export default {
   margin: 0;
 }
 .imageFlag {
-  width: 250px;
+  width: 260px;
   height: 150px;
+  overflow: hidden;
 }
 .flag {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  overflow: hidden;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
+
+.search-filter {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.filtering,
+.search {
+  margin: 0.5% 6%;
+  /*padding: 10px 0;*/
+}
+.search {
+  background: hsl(209, 23%, 22%);
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  width: 400px;
+  padding: 10px 20px;
+}
+.search::placeholder {
+  color: #fff;
+}
+
 @media only screen and (max-width: 600px) {
   #countrieslist {
     gap: 30px;
@@ -74,10 +114,23 @@ export default {
   }
   .list {
     max-width: 350px;
+    margin: 2% auto;
   }
   .imageFlag {
     width: 300px;
     height: 200px;
+  }
+  .search-filter {
+    flex-flow: column wrap;
+    align-content: center;
+    margin: 2% 0;
+  }
+  .search,
+  .filtering {
+    margin: 2% 6%;
+  }
+  .search {
+    width: 90%;
   }
 }
 </style>
