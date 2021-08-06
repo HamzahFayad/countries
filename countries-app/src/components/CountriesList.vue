@@ -3,12 +3,16 @@
     <div class="search-filter">
       <input class="search" type="text" placeholder="SearchBar..." />
       <div class="filtering">
-        <FilterCountries />
+        <FilterCountries @filterByRegion="onRegionSelect" />
       </div>
     </div>
 
     <div id="countrieslist">
-      <div class="list" v-for="(country, index) in list" :key="index">
+      <div
+        class="list"
+        v-for="(country, index) in regions.length > 0 ? regions : list"
+        :key="index"
+      >
         <div class="imageFlag">
           <img class="flag" :src="country.flag" alt="" />
         </div>
@@ -44,6 +48,22 @@ export default {
       regions: [],
       selected: "",
     };
+  },
+  methods: {
+    onRegionSelect(select) {
+      if (select.value !== "") {
+        this.selected = select;
+        console.log(this.selected);
+        let filtered = this.list.filter((c) => {
+          return c.region === this.selected;
+        });
+        console.log(filtered, "fil");
+
+        this.regions = filtered;
+        // this.list = this.regions;
+      }
+      //return this.list;
+    },
   },
 };
 </script>
@@ -105,6 +125,13 @@ export default {
 }
 .search::placeholder {
   color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
 }
 
 @media only screen and (max-width: 600px) {

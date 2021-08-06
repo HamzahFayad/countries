@@ -1,9 +1,9 @@
 <template>
   <div id="filterByRegion">
-    <select v-model="selected">
-      <option value="">Filter by Region</option>
+    <select v-model="selected" @change="filterCountries">
+      <option>Filter by Region</option>
       <option>Africa</option>
-      <option>America</option>
+      <option>Americas</option>
       <option>Asia</option>
       <option>Europe</option>
       <option>Oceania</option>
@@ -15,15 +15,20 @@
 <script>
 export default {
   name: "FilterByRegion",
-  props: {
+  /*props: {
     selectedRegion: {
       type: String,
     },
-  },
+  },*/
   data() {
     return {
-      selected: "",
+      selected: "Filter by Region",
     };
+  },
+  methods: {
+    filterCountries() {
+      this.$emit("filterByRegion", this.selected);
+    },
   },
 };
 </script>

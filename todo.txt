@@ -1,0 +1,3 @@
+filter component: emit Event
+und die <selected region> an countries list weiterleiten
+bei countries list je nach <selected> die komplette Liste danach filtern
