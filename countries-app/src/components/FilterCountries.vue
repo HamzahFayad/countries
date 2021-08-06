@@ -41,8 +41,10 @@ select {
   border: none;
   padding: 18px 20px;
   width: 180px;
-  background: hsl(209, 23%, 22%);
+  background: hsl(210, 2%, 82%);
   border-radius: 6px;
-  color: #fff;
+  color: #1c1c1c;
+  outline: none;
+  font-weight: 600;
 }
 </style>

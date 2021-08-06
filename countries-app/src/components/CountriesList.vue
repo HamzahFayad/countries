@@ -1,7 +1,7 @@
 <template>
   <div id="allCountries">
     <div class="search-filter">
-      <input class="search" type="text" placeholder="SearchBar..." />
+      <Search @searchByCountry="onCountrySearch" />
       <div class="filtering">
         <FilterCountries @filterByRegion="onRegionSelect" />
       </div>
@@ -31,10 +31,13 @@
 
 <script>
 import FilterCountries from "./FilterCountries.vue";
+import Search from "./Search.vue";
+
 export default {
   name: "CountriesList",
   components: {
     FilterCountries,
+    Search,
   },
   props: {
     list: {
@@ -47,6 +50,7 @@ export default {
       regionsURL: "https://restcountries.eu/rest/v2/region/europe",
       regions: [],
       selected: "",
+      searched: "",
     };
   },
   methods: {
@@ -63,6 +67,13 @@ export default {
         // this.list = this.regions;
       }
       //return this.list;
+    },
+    onCountrySearch(search) {
+      this.searched = search;
+      let searchedC = this.list.filter((c) => {
+        return c.name.toLowerCase().includes(this.searched.toLowerCase());
+      });
+      this.regions = searchedC;
     },
   },
 };
@@ -110,28 +121,9 @@ export default {
   flex-flow: row wrap;
   justify-content: space-between;
 }
-.filtering,
-.search {
-  margin: 0.5% 6%;
+.filtering {
+  margin: 0.5% 5.6%;
   /*padding: 10px 0;*/
-}
-.search {
-  background: hsl(209, 23%, 22%);
-  outline: none;
-  border: none;
-  border-radius: 6px;
-  width: 400px;
-  padding: 10px 20px;
-}
-.search::placeholder {
-  color: #fff;
-}
-
-.hidden {
-  display: none;
-}
-.visible {
-  display: block;
 }
 
 @media only screen and (max-width: 600px) {
@@ -148,16 +140,12 @@ export default {
     height: 200px;
   }
   .search-filter {
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     align-content: center;
     margin: 2% 0;
   }
-  .search,
   .filtering {
     margin: 2% 6%;
-  }
-  .search {
-    width: 90%;
   }
 }
 </style>
