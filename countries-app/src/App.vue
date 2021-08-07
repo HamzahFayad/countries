@@ -1,34 +1,15 @@
 <template>
   <div id="app">
-    <div class="navbar">
-      <Navbar />
-    </div>
-    <CountriesList :list="allCountries" />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import Navbar from "./components/Navbar.vue";
-import CountriesList from "./components/CountriesList.vue";
-
 export default {
   name: "App",
-  components: {
-    Navbar,
-    CountriesList,
-  },
+  components: {},
   data() {
-    return {
-      apiUrl: "https://restcountries.eu/rest/v2",
-      allCountries: [],
-    };
-  },
-  async created() {
-    await axios.get(this.apiUrl + "/all").then((res) => {
-      console.log(res.data[4]);
-      this.allCountries = res.data;
-    });
+    return {};
   },
 };
 </script>
@@ -47,16 +28,5 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 150px;
-}
-.navbar {
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  background: hsl(209, 23%, 22%);
-  z-index: 11;
-}
-p,
-h1 {
-  color: #fff;
 }
 </style>

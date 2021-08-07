@@ -22,6 +22,15 @@
             <p>Population: {{ country.population }}</p>
             <p>Region: {{ country.region }}</p>
             <p>Capital: {{ country.capital }}</p>
+            <p>
+              <router-link
+                :to="{
+                  name: 'CountryDetail',
+                  params: { country },
+                }"
+                >Go</router-link
+              >
+            </p>
           </div>
         </div>
       </div>
@@ -85,6 +94,7 @@ export default {
   flex-flow: row wrap;
   gap: 60px;
   margin: 0 5%;
+  color: #fff;
 }
 .list {
   background: hsl(209, 23%, 22%);

@@ -20,6 +20,7 @@ h1 {
   float: left;
   font-size: 22px;
   line-height: 44px;
+  color: #fff;
 }
 .dark-light {
   float: right;
