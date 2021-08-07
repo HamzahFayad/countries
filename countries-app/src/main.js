@@ -15,7 +15,7 @@ const routes = [
     component: Home,
   },
   {
-    path: "/:country",
+    path: "/country",
     name: "CountryDetail",
     component: CountryDetail,
     props: true,

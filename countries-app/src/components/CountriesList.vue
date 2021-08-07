@@ -13,26 +13,25 @@
         v-for="(country, index) in regions.length > 0 ? regions : list"
         :key="index"
       >
-        <div class="imageFlag">
-          <img class="flag" :src="country.flag" alt="" />
-        </div>
-        <div class="countryInfos">
-          <h2 class="countryName">{{ country.name }}</h2>
-          <div class="facts">
-            <p>Population: {{ country.population }}</p>
-            <p>Region: {{ country.region }}</p>
-            <p>Capital: {{ country.capital }}</p>
-            <p>
-              <router-link
-                :to="{
-                  name: 'CountryDetail',
-                  params: { country },
-                }"
-                >Go</router-link
-              >
-            </p>
+        <router-link
+          :to="{
+            name: 'CountryDetail',
+            params: { country },
+          }"
+        >
+          <div class="imageFlag">
+            <img class="flag" :src="country.flag" alt="" />
           </div>
-        </div>
+          <div class="countryInfos">
+            <h2 class="countryName">{{ country.name }}</h2>
+            <div class="facts">
+              <p>Population: {{ country.population }}</p>
+              <p>Region: {{ country.region }}</p>
+              <p>Capital: {{ country.capital }}</p>
+              <p></p>
+            </div>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -96,11 +95,20 @@ export default {
   margin: 0 5%;
   color: #fff;
 }
+p,
+a {
+  text-decoration: none;
+}
 .list {
   background: hsl(209, 23%, 22%);
   max-width: 260px;
   margin: 2% auto;
   border-radius: 8px;
+  transition: 150ms ease-in-out;
+}
+.list:hover {
+  transform: scale(1.05);
+  background: hsl(210, 23%, 21%);
 }
 .countryName {
   color: #fff;

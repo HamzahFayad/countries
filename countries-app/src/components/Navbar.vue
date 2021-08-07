@@ -36,4 +36,7 @@ h1 {
   line-height: 44px;
   font-weight: 600;
 }
+p {
+  color: #fff;
+}
 </style>
