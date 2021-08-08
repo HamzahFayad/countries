@@ -1,12 +1,15 @@
 <template>
   <div id="search">
-    <input
-      class="search"
-      type="text"
-      placeholder="Search for a country..."
-      v-model="searchedCountry"
-      @input="searchCountry"
-    />
+    <div class="input">
+      <img class="svg" src="../assets/search-solid.svg" alt="" />
+      <input
+        class="search"
+        type="text"
+        placeholder="Search for a country..."
+        v-model="searchedCountry"
+        @input="searchCountry"
+      />
+    </div>
   </div>
 </template>
 
@@ -32,7 +35,7 @@ export default {
 }
 
 .search {
-  background: hsl(210, 2%, 82%);
+  background: hsl(209, 23%, 22%);
   outline: none;
   border: none;
   border-radius: 6px;
@@ -41,15 +44,32 @@ export default {
   font-weight: 600;
   margin: 0.5% 3%;
 }
+input {
+  color: #fff;
+}
 .search::placeholder {
-  color: #1c1c1cbb;
+  color: #fff;
+  font-weight: 300;
+}
+.input {
+  position: relative;
 }
 
+.svg {
+  max-width: 20px;
+  position: absolute;
+  right: 0rem;
+  transform: translate(-50%, 100%);
+}
 @media only screen and (max-width: 600px) {
   .search {
     width: 80%;
     padding: 18px 20px;
     margin: 2% 1%;
+  }
+  .svg {
+    right: 3.5rem;
+    transform: translate(-50%, 125%);
   }
 }
 </style>

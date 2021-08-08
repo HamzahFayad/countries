@@ -1,13 +1,15 @@
 <template>
   <div id="filterByRegion">
-    <select v-model="selected" @change="filterCountries">
-      <option>Filter by Region</option>
-      <option>Africa</option>
-      <option>Americas</option>
-      <option>Asia</option>
-      <option>Europe</option>
-      <option>Oceania</option>
-    </select>
+    <div class="filter">
+      <select v-model="selected" @change="filterCountries">
+        <option>Filter by Region</option>
+        <option>Africa</option>
+        <option>Americas</option>
+        <option>Asia</option>
+        <option>Europe</option>
+        <option>Oceania</option>
+      </select>
+    </div>
     <!--<p>{{ selected }}</p>-->
   </div>
 </template>
@@ -41,10 +43,13 @@ select {
   border: none;
   padding: 18px 20px;
   width: 180px;
-  background: hsl(210, 2%, 82%);
+  background: hsl(209, 23%, 22%);
   border-radius: 6px;
-  color: #1c1c1c;
+  color: #fff;
   outline: none;
-  font-weight: 600;
+  font-weight: 400;
+}
+.filter {
+  position: relative;
 }
 </style>
