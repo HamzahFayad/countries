@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <h1>Where in the world?</h1>
-    <div class="dark-light">
+    <div @click="darkLight" class="dark-light">
       <img src="../assets/moon-solid.svg" alt="" />
       <p>Dark Mode</p>
     </div>
@@ -9,7 +9,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["theme"],
+  methods: {
+    darkLight() {
+      this.$emit("darklight");
+    },
+  },
+};
 </script>
 
 <style>

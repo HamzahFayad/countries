@@ -27,7 +27,6 @@
                 <span>Sub Region: </span> {{ $route.params.country.subregion }}
               </p>
               <p><span>Capital: </span> {{ $route.params.country.capital }}</p>
-              <span>cioc: </span> {{ $route.params.country.cioc }}
             </div>
 
             <div class="content__right">
