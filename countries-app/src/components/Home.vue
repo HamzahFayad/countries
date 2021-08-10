@@ -1,9 +1,14 @@
 <template>
   <div id="home">
-    <div class="navbar" :class="selected">
-      <Navbar :theme="selected" @darklight="darkLight" />
+    <div class="navbar">
+      <Navbar />
     </div>
-    <CountriesList :list="allCountries" />
+    <div class="hidden-loader" v-if="loading">
+      <img class="loader" src="../assets/spinner-solid.svg" alt="loader" />
+    </div>
+    <div v-else>
+      <CountriesList :list="allCountries" />
+    </div>
   </div>
 </template>
 
@@ -22,25 +27,29 @@ export default {
     return {
       apiUrl: "https://restcountries.eu/rest/v2",
       allCountries: [],
-      themes: ["dark", "light"],
-      selected: "",
+      loading: true,
+      //themes: ["dark", "light"],
+      //selected: "",
     };
   },
   async created() {
-    await axios.get(this.apiUrl + "/all").then((res) => {
-      console.log(res.data[4]);
-      this.allCountries = res.data;
-      this.selected = this.themes[0];
-    });
+    await axios
+      .get(this.apiUrl + "/all")
+      .then((res) => {
+        this.loading = false;
+        this.allCountries = res.data;
+        //this.selected = this.themes[0];
+      })
+      .catch((error) => console.log(error));
   },
   methods: {
-    darkLight() {
+    /*darkLight() {
       if (this.selected === this.themes[0]) {
         this.selected = this.themes[1];
       } else {
         this.selected = this.themes[0];
       }
-    },
+    },*/
   },
 };
 </script>
@@ -48,6 +57,7 @@ export default {
 <style scoped>
 .navbar {
   width: 100vw;
+  height: 75px;
   position: fixed;
   top: 0;
   background: hsl(209, 23%, 22%);
@@ -55,5 +65,22 @@ export default {
 }
 p {
   color: #fff;
+}
+.hidden-loader {
+  display: grid;
+  place-items: center;
+  margin-top: 15%;
+}
+.loader {
+  max-width: 80px;
+  animation: load 2000ms infinite;
+}
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

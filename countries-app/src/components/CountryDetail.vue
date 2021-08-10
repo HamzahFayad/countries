@@ -5,12 +5,14 @@
     </div>
 
     <div class="content__wrapper">
-      <button style="cursor: pointer" @click="back">Back</button>
+      <div class="back">
+        <button style="cursor: pointer" @click="back">Back</button>
+      </div>
       <div class="detail__content">
         <div class="img__flag">
           <img class="flag" :src="$route.params.country.flag" alt="" />
         </div>
-        <div>
+        <div class="infos">
           <h2>{{ $route.params.country.name }}</h2>
 
           <div class="content">
@@ -50,14 +52,16 @@
             </div>
           </div>
 
-          <span>Borders:</span>
-          <p
-            class="bords"
-            v-for="b in $route.params.country.borders"
-            :key="b.index"
-          >
-            {{ b }}
-          </p>
+          <div v-show="$route.params.country.borders.length > 0">
+            <span>Borders:</span>
+            <p
+              class="bords"
+              v-for="b in $route.params.country.borders"
+              :key="b.index"
+            >
+              {{ b }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -88,10 +92,13 @@ export default {
   color: #fff;
 }
 .content__wrapper {
-  margin: 0 5%;
+  margin: 0 6%;
 }
+
 .navbar {
   width: 100vw;
+  height: 75px;
+
   position: fixed;
   top: 0;
   background: hsl(209, 23%, 22%);
@@ -109,15 +116,18 @@ button {
 .detail__content {
   display: flex;
   flex-flow: row wrap;
-  gap: 100px;
-  justify-content: center;
+  gap: 180px;
+  margin: 4% 0;
+}
+.infos {
+  margin-left: 2%;
 }
 .content {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
   gap: 60px;
 }
+
 .img__flag {
   width: 500px;
   height: 350px;
@@ -133,12 +143,33 @@ span {
 }
 p {
   padding: 0;
-  margin: 8% 0;
 }
 .langs,
 .bords {
   display: inline-block;
   text-align: center;
   padding: 0 4px;
+}
+@media only screen and (max-width: 600px) {
+  .img__flag {
+    margin-top: 10%;
+  }
+  .detail__content {
+    gap: 0px;
+  }
+  .content {
+    gap: 0px;
+    flex-flow: column wrap;
+    float: left;
+  }
+  button {
+    display: block;
+    max-width: 0 auto;
+  }
+  .infos {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: flex-start;
+  }
 }
 </style>

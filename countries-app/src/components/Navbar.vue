@@ -1,10 +1,6 @@
 <template>
   <div id="nav">
     <h1>Where in the world?</h1>
-    <div @click="darkLight" class="dark-light">
-      <img src="../assets/moon-solid.svg" alt="" />
-      <p>Dark Mode</p>
-    </div>
   </div>
 </template>
 

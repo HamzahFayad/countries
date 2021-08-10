@@ -65,11 +65,9 @@ export default {
     onRegionSelect(select) {
       if (select.value !== "") {
         this.selected = select;
-        console.log(this.selected);
         let filtered = this.list.filter((c) => {
           return c.region === this.selected;
         });
-        console.log(filtered, "fil");
 
         this.regions = filtered;
         // this.list = this.regions;
