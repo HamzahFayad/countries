@@ -22,7 +22,11 @@ const routes = [
   },
 ];
 
-const router = new VueRouter({ routes, mode: "history" });
+const router = new VueRouter({
+  routes,
+  base: "/countries/",
+  mode: "hash",
+});
 
 new Vue({
   render: (h) => h(App),
