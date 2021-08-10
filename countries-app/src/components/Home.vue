@@ -29,7 +29,7 @@ export default {
       allCountries: [],
       loading: true,
       //themes: ["dark", "light"],
-      //selected: "",
+      //selected: ""
     };
   },
   async created() {
