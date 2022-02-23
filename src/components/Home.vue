@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      apiUrl: "https://restcountries.eu/rest/v2",
+      apiUrl: "https://restcountries.com/v3.1",
       allCountries: [],
       loading: true,
       //themes: ["dark", "light"],
@@ -36,6 +36,7 @@ export default {
     await axios
       .get(this.apiUrl + "/all")
       .then((res) => {
+        console.log(res);
         this.loading = false;
         this.allCountries = res.data;
         //this.selected = this.themes[0];

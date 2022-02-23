@@ -13,25 +13,25 @@
         v-for="(country, index) in regions.length > 0 ? regions : list"
         :key="index"
       >
-        <router-link
+        <!--<router-link
           :to="{
             name: 'CountryDetail',
             params: { country },
           }"
-        >
-          <div class="imageFlag">
-            <img class="flag" :src="country.flag" alt="" />
+        >-->
+        <div class="imageFlag">
+          <img class="flag" :src="country.flags.png" alt="" />
+        </div>
+        <div class="countryInfos">
+          <h2 class="countryName">{{ country.name.common }}</h2>
+          <div class="facts">
+            <p>Population: {{ country.population }}</p>
+            <p>Region: {{ country.region }}</p>
+            <p>Capital: {{ country.capital }}</p>
+            <p></p>
           </div>
-          <div class="countryInfos">
-            <h2 class="countryName">{{ country.name }}</h2>
-            <div class="facts">
-              <p>Population: {{ country.population }}</p>
-              <p>Region: {{ country.region }}</p>
-              <p>Capital: {{ country.capital }}</p>
-              <p></p>
-            </div>
-          </div>
-        </router-link>
+        </div>
+        <!--</router-link>-->
       </div>
     </div>
   </div>
@@ -77,7 +77,9 @@ export default {
     onCountrySearch(search) {
       this.searched = search;
       let searchedC = this.list.filter((c) => {
-        return c.name.toLowerCase().includes(this.searched.toLowerCase());
+        return c.name.common
+          .toLowerCase()
+          .includes(this.searched.toLowerCase());
       });
       this.regions = searchedC;
     },
